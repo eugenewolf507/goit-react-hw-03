@@ -59,7 +59,7 @@
   font-size: 36px;
 }
 
-.galleryItem:hover .fullscreenButton,
-.galleryItem:focus .fullscreenButton {
+.photoCard:hover .fullscreenButton,
+.photoCard:focus .fullscreenButton {
   opacity: 1;
 }

@@ -9,25 +9,20 @@ class ImageFinderApp extends Component {
     images: [],
     error: null,
     searchQuery: '',
-    pageNumber: 1,
+    pageNumber: 0,
   };
 
   handleSubmit = e => {
     const { searchQuery, pageNumber } = this.state;
     e.preventDefault();
-    this.fetchImages(searchQuery, pageNumber);
+    const handlePageNumber = pageNumber + 1;
+    this.setState({ pageNumber: handlePageNumber });
+    this.fetchImages(searchQuery, handlePageNumber);
   };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
-  };
-
-  handleLoadMore = () => {
-    const { searchQuery, pageNumber } = this.state;
-    const handlePageNumber = pageNumber + 1;
-    this.setState({ pageNumber: handlePageNumber });
-    this.fetchImages(searchQuery, handlePageNumber);
   };
 
   fetchImages = (searchQuery, pageNumber) => {
@@ -39,6 +34,10 @@ class ImageFinderApp extends Component {
         })),
       )
       .catch(error => this.setState({ error }));
+  };
+
+  showLargeImage = () => {
+    console.log('showLargeImage');
   };
 
   render() {
@@ -56,7 +55,7 @@ class ImageFinderApp extends Component {
         <button
           type="button"
           className={styles.loadMoreBTN}
-          onClick={this.handleLoadMore}
+          onClick={this.handleSubmit}
         >
           Load more
         </button>
