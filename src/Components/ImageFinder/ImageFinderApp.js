@@ -13,11 +13,12 @@ class ImageFinderApp extends Component {
   };
 
   handleSubmit = e => {
-    const { searchQuery, pageNumber } = this.state;
+    const { searchQuery, pageNumber, images } = this.state;
     e.preventDefault();
     const handlePageNumber = pageNumber + 1;
     this.setState({ pageNumber: handlePageNumber });
     this.fetchImages(searchQuery, handlePageNumber);
+    console.log(images);
   };
 
   handleChange = ({ target }) => {
