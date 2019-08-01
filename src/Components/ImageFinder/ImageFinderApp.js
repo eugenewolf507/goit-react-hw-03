@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './ImageFinderApp.module.css';
 import SearchForm from './SearchForm/SearchForm';
 import Gallery from './Gallery/Gallery';
+import Modal from './Modal/Modal';
 import * as imageAPI from '../../services/pixabay-API';
 
 class ImageFinderApp extends Component {
@@ -10,7 +11,15 @@ class ImageFinderApp extends Component {
     error: null,
     searchQuery: '',
     pageNumber: 0,
+    isModalOpen: false,
   };
+
+  openModal = () => {
+    this.setState({ isModalOpen: true });
+    console.log(this.state.isModalOpen);
+  };
+
+  closeModal = () => this.setState({ isModalOpen: false });
 
   handleSubmit = e => {
     const { searchQuery, pageNumber } = this.state;
@@ -41,7 +50,7 @@ class ImageFinderApp extends Component {
   };
 
   render() {
-    const { images, error, searchQuery } = this.state;
+    const { images, error, searchQuery, isModalOpen } = this.state;
     return (
       <div className={styles.app}>
         <SearchForm
@@ -60,6 +69,16 @@ class ImageFinderApp extends Component {
           Load more
         </button>
         <a href="pixabay.com">pixabay.com</a>
+        <button type="button" onClick={this.openModal}>
+          OpenModal
+        </button>
+        <Modal>
+          <h1>ModalContent</h1>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere,
+            repellat?
+          </p>
+        </Modal>
       </div>
     );
   }
