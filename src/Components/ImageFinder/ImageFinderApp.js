@@ -16,7 +16,7 @@ class ImageFinderApp extends Component {
 
   openModal = () => {
     this.setState({ isModalOpen: true });
-    console.log(this.state.isModalOpen);
+    console.log(`isModalOpen: ${this.state.isModalOpen}`);
   };
 
   closeModal = () => this.setState({ isModalOpen: false });
@@ -27,7 +27,7 @@ class ImageFinderApp extends Component {
     const handlePageNumber = pageNumber + 1;
     this.setState({ pageNumber: handlePageNumber });
     this.fetchImages(searchQuery, handlePageNumber);
-    console.log(images);
+    console.log(`images: ${images}`);
   };
 
   handleChange = ({ target }) => {
@@ -73,13 +73,15 @@ class ImageFinderApp extends Component {
         <button type="button" onClick={this.openModal}>
           OpenModal
         </button>
-        <Modal>
-          <h1>ModalContent</h1>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere,
-            repellat?
-          </p>
-        </Modal>
+        {isModalOpen && (
+          <Modal onClose={this.closeModal}>
+            {/* <Modal> */}
+            <h1>Lorem ipsum</h1>
+            <button type="button" onClick={this.closeModal}>
+              CloseModal
+            </button>
+          </Modal>
+        )}
       </div>
     );
   }

@@ -1,7 +1,14 @@
 import React from 'react';
 import styles from './PhotoCard.module.css';
 
-const SearchForm = ({ webformatURL, likes, views, comments, downloads }) => (
+const SearchForm = ({
+  webformatURL,
+  likes,
+  views,
+  comments,
+  downloads,
+  showLargeImage,
+}) => (
   <div className={styles.photoCard}>
     <img src={webformatURL} alt="" />
 
@@ -26,7 +33,7 @@ const SearchForm = ({ webformatURL, likes, views, comments, downloads }) => (
     <button
       type="button"
       className={styles.fullscreenButton}
-      // onClick={showLargeImage}
+      onClick={showLargeImage}
     >
       <i className="material-icons">zoom_out_map</i>
     </button>
