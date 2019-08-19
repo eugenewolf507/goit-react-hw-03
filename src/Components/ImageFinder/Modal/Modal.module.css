@@ -18,7 +18,8 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
+  height: auto;
+  width: 50%;
   background: rgba(67, 136, 177, 0.5);
   z-index: 2;
 }
-

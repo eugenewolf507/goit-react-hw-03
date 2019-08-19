@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import styles from './ImageFinderApp.module.css';
 import SearchForm from './SearchForm/SearchForm';
 import Gallery from './Gallery/Gallery';
-import Modal from './Modal/Modal';
+// import Modal from './Modal/Modal';
 import * as imageAPI from '../../services/pixabay-API';
 
 class ImageFinderApp extends Component {
@@ -13,6 +13,11 @@ class ImageFinderApp extends Component {
     pageNumber: 0,
     // isModalOpen: false,
   };
+
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+  }
 
   // openModal = () => {
   //   this.setState({ isModalOpen: true });
@@ -27,7 +32,12 @@ class ImageFinderApp extends Component {
     const handlePageNumber = pageNumber + 1;
     this.setState({ pageNumber: handlePageNumber });
     this.fetchImages(searchQuery, handlePageNumber);
+    this.ref.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
     console.log(`images: ${images}`);
+    console.log(`this.ref.current: ${this.ref.current}`);
   };
 
   handleChange = ({ target }) => {
@@ -52,6 +62,7 @@ class ImageFinderApp extends Component {
 
   render() {
     const { images, error, searchQuery, isModalOpen } = this.state;
+
     return (
       <div className={styles.app}>
         <SearchForm
@@ -59,7 +70,8 @@ class ImageFinderApp extends Component {
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
         />
-        {error && <p>Somithing goes wrong: {error.message}</p>}
+        <p ref={this.ref}> Ref </p>
+        {error && <p>Something goes wrong: {error.message}</p>}
         {images.length > 0 && <Gallery items={images} />}
 
         <button
@@ -69,11 +81,12 @@ class ImageFinderApp extends Component {
         >
           Load more
         </button>
+
         <a href="http://www.pixabay.com">pixabay.com</a>
         {/* <button type="button" onClick={this.openModal}>
           OpenModal
         </button> */}
-        
+
         {/* {isModalOpen && (
           <Modal onClose={this.closeModal}>
             <h1>Lorem ipsum</h1>
@@ -82,7 +95,6 @@ class ImageFinderApp extends Component {
             </button>
           </Modal>
         )} */}
-      
       </div>
     );
   }
