@@ -1,9 +1,9 @@
 .app {
-  /* display: grid;
+  display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 24px; */
+  grid-gap: 24px; 
   /* display: flex;
-  flex-direction: column; */
+  flex-direction: column;*/
 }
 
 .loadMoreBTN {

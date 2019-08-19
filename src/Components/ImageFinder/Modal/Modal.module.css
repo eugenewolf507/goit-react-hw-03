@@ -14,9 +14,11 @@
 .modal {
   position: fixed;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background: rgb(255, 255, 255);
+  background: rgba(67, 136, 177, 0.5);
   z-index: 2;
 }
+

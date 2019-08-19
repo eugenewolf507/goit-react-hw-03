@@ -11,15 +11,15 @@ class ImageFinderApp extends Component {
     error: null,
     searchQuery: '',
     pageNumber: 0,
-    isModalOpen: false,
+    // isModalOpen: false,
   };
 
-  openModal = () => {
-    this.setState({ isModalOpen: true });
-    console.log(`isModalOpen: ${this.state.isModalOpen}`);
-  };
+  // openModal = () => {
+  //   this.setState({ isModalOpen: true });
+  //   console.log(`isModalOpen: ${this.state.isModalOpen}`);
+  // };
 
-  closeModal = () => this.setState({ isModalOpen: false });
+  // closeModal = () => this.setState({ isModalOpen: false });
 
   handleSubmit = e => {
     const { searchQuery, pageNumber, images } = this.state;
@@ -46,9 +46,9 @@ class ImageFinderApp extends Component {
       .catch(error => this.setState({ error }));
   };
 
-  showLargeImage = () => {
-    console.log('showLargeImage');
-  };
+  // showLargeImage = () => {
+  //   console.log('showLargeImage');
+  // };
 
   render() {
     const { images, error, searchQuery, isModalOpen } = this.state;
@@ -69,19 +69,20 @@ class ImageFinderApp extends Component {
         >
           Load more
         </button>
-        <a href="pixabay.com">pixabay.com</a>
-        <button type="button" onClick={this.openModal}>
+        <a href="http://www.pixabay.com">pixabay.com</a>
+        {/* <button type="button" onClick={this.openModal}>
           OpenModal
-        </button>
-        {isModalOpen && (
+        </button> */}
+        
+        {/* {isModalOpen && (
           <Modal onClose={this.closeModal}>
-            {/* <Modal> */}
             <h1>Lorem ipsum</h1>
             <button type="button" onClick={this.closeModal}>
               CloseModal
             </button>
           </Modal>
-        )}
+        )} */}
+      
       </div>
     );
   }

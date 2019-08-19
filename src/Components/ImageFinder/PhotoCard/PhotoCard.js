@@ -7,6 +7,7 @@ const SearchForm = ({
   views,
   comments,
   downloads,
+  largeImageURL,
   showLargeImage,
 }) => (
   <div className={styles.photoCard}>
@@ -33,7 +34,7 @@ const SearchForm = ({
     <button
       type="button"
       className={styles.fullscreenButton}
-      onClick={showLargeImage}
+      onClick={() => showLargeImage(largeImageURL)}
     >
       <i className="material-icons">zoom_out_map</i>
     </button>
