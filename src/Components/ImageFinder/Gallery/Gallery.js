@@ -11,12 +11,9 @@ class Gallery extends Component {
 
   openModal = (largeImageURL) => {
     this.setState({ isModalOpen: true, largeImageURL });
-    console.log(`isModalOpen: ${this.state.isModalOpen}`);
   };
 
   closeModal = () => this.setState({ isModalOpen: false });
-
-  showLargeImage = () => console.log('Show large image');
 
   render() {
     const { items } = this.props;

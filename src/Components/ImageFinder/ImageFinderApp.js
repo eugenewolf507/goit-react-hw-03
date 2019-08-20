@@ -1,8 +1,7 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import styles from './ImageFinderApp.module.css';
 import SearchForm from './SearchForm/SearchForm';
 import Gallery from './Gallery/Gallery';
-// import Modal from './Modal/Modal';
 import * as imageAPI from '../../services/pixabay-API';
 
 class ImageFinderApp extends Component {
@@ -11,7 +10,6 @@ class ImageFinderApp extends Component {
     error: null,
     searchQuery: '',
     pageNumber: 0,
-    // isModalOpen: false,
   };
 
   constructor(props) {
@@ -19,26 +17,13 @@ class ImageFinderApp extends Component {
     this.ref = React.createRef();
   }
 
-  // openModal = () => {
-  //   this.setState({ isModalOpen: true });
-  //   console.log(`isModalOpen: ${this.state.isModalOpen}`);
-  // };
-
-  // closeModal = () => this.setState({ isModalOpen: false });
-
   handleSubmit = e => {
-    const { searchQuery, pageNumber, images } = this.state;
+    const { searchQuery, pageNumber } = this.state;
     e.preventDefault();
     const handlePageNumber = pageNumber + 1;
     this.setState({ pageNumber: handlePageNumber });
     this.fetchImages(searchQuery, handlePageNumber);
-    this.ref.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-    console.log(`images: ${images}`);
-    console.log(`this.ref.current: ${this.ref.current}`);
-  };
+    };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
@@ -56,12 +41,16 @@ class ImageFinderApp extends Component {
       .catch(error => this.setState({ error }));
   };
 
-  // showLargeImage = () => {
-  //   console.log('showLargeImage');
-  // };
+  componentDidUpdate () {
+    this.ref.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      
+    });
+  };
 
   render() {
-    const { images, error, searchQuery, isModalOpen } = this.state;
+    const { images, error, searchQuery } = this.state;
 
     return (
       <div className={styles.app}>
@@ -70,7 +59,7 @@ class ImageFinderApp extends Component {
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
         />
-        <p ref={this.ref}> Ref </p>
+        
         {error && <p>Something goes wrong: {error.message}</p>}
         {images.length > 0 && <Gallery items={images} />}
 
@@ -78,23 +67,11 @@ class ImageFinderApp extends Component {
           type="button"
           className={styles.loadMoreBTN}
           onClick={this.handleSubmit}
+          ref={this.ref}
         >
           Load more
         </button>
-
         <a href="http://www.pixabay.com">pixabay.com</a>
-        {/* <button type="button" onClick={this.openModal}>
-          OpenModal
-        </button> */}
-
-        {/* {isModalOpen && (
-          <Modal onClose={this.closeModal}>
-            <h1>Lorem ipsum</h1>
-            <button type="button" onClick={this.closeModal}>
-              CloseModal
-            </button>
-          </Modal>
-        )} */}
       </div>
     );
   }

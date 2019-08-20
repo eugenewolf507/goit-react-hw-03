@@ -1,0 +1,20 @@
+.balance {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px;
+  font-size: 16px;
+  font-family: 'Roboto';
+  color: rgb(92, 105, 117);
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.arrowGreen {
+  color: rgb(88, 165, 97);
+}
+
+.arrowRed {
+  color: rgb(231, 83, 83);
+}

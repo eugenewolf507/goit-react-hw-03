@@ -15,18 +15,13 @@ class Modal extends Component {
   }
 
   handleKeyPress = e => {
-    console.log(`e.code ${e.code}`);
     if (e.code !== 'Escape') return;
-    console.log('It works too');
     this.props.onClose();
   };
 
   handleOverlayClick = e => {
     const { current } = this.backdropRef;
-    console.log(`current: ${current}`);
-    console.log(`e.target: ${e.target}`);
     if (current && e.target !== current) return;
-    // if current exist (==! null) and e.target !== current
     this.props.onClose();
   };
 
@@ -41,7 +36,6 @@ class Modal extends Component {
       >
         <div className={styles.modal}>
           {children}
-          {/* <img src={largeImageURL} alt={tags} /> */}
         </div>
       </button>
     );
