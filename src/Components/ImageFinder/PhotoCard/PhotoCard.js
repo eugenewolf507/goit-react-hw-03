@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './PhotoCard.module.css';
 
 const SearchForm = ({
@@ -40,5 +41,15 @@ const SearchForm = ({
     </button>
   </div>
 );
+
+SearchForm.propTypes = {
+  webformatURL: PropTypes.string.isRequired,
+  likes: PropTypes.number.isRequired,
+  views: PropTypes.number.isRequired,
+  comments: PropTypes.number.isRequired,
+  downloads: PropTypes.number.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+  showLargeImage: PropTypes.func.isRequired,
+};
 
 export default SearchForm;

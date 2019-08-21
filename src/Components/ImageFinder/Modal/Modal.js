@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Modal.module.css';
 
 class Modal extends Component {
@@ -34,12 +35,18 @@ class Modal extends Component {
         ref={this.backdropRef}
         onClick={this.handleOverlayClick}
       >
-        <div className={styles.modal}>
-          {children}
-        </div>
+        <div className={styles.modal}>{children}</div>
       </button>
     );
   }
 }
+
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
 
 export default Modal;

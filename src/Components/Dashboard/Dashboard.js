@@ -21,6 +21,27 @@ class Dashboard extends Component {
     expense: 0,
   };
 
+  componentDidMount() {
+    if (localStorage.getItem('history')) {
+      this.setState({
+        history: JSON.parse(localStorage.getItem('history')),
+        balance: JSON.parse(localStorage.getItem('balance')),
+        income: JSON.parse(localStorage.getItem('income')),
+        expense: JSON.parse(localStorage.getItem('expense')),
+      });
+    }
+  }
+
+  componentDidUpdate() {
+    const { history, expense, income, balance } = this.state;
+    if (history) {
+      localStorage.setItem('history', JSON.stringify(history));
+      localStorage.setItem('expense', JSON.stringify(expense));
+      localStorage.setItem('income', JSON.stringify(income));
+      localStorage.setItem('balance', JSON.stringify(balance));
+    }
+  }
+
   updateInputValue = ({ target }) => {
     const { name, value } = target;
     if (value >= 0) {
@@ -98,28 +119,6 @@ class Dashboard extends Component {
       alert('Введите сумму для проведения операции!');
     }
   };
-
-  componentDidMount() {
-    console.log(`localStorage.getItem("history"): ${localStorage.getItem("history")}`)
-    localStorage.getItem("history") &&
-    this.setState({
-      history: JSON.parse(localStorage.getItem("history")),
-      balance: JSON.parse(localStorage.getItem("balance")),
-      income: JSON.parse(localStorage.getItem("income")),
-      expense: JSON.parse(localStorage.getItem("expense")),
-    });   
-    }
-  
-
-  componentDidUpdate() {
-    console.log(`this.state.history: ${this.state.history}`);
-      if (this.state.history) {
-      localStorage.setItem("history", JSON.stringify(this.state.history));
-      localStorage.setItem("expense", JSON.stringify(this.state.expense));
-      localStorage.setItem("income", JSON.stringify(this.state.income));
-      localStorage.setItem("balance", JSON.stringify(this.state.balance));
-    }
-  }
 
   render() {
     const {

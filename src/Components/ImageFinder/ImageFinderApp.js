@@ -17,13 +17,20 @@ class ImageFinderApp extends Component {
     this.ref = React.createRef();
   }
 
+  componentDidUpdate() {
+    this.ref.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+
   handleSubmit = e => {
     const { searchQuery, pageNumber } = this.state;
     e.preventDefault();
     const handlePageNumber = pageNumber + 1;
     this.setState({ pageNumber: handlePageNumber });
     this.fetchImages(searchQuery, handlePageNumber);
-    };
+  };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
@@ -41,14 +48,6 @@ class ImageFinderApp extends Component {
       .catch(error => this.setState({ error }));
   };
 
-  componentDidUpdate () {
-    this.ref.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      
-    });
-  };
-
   render() {
     const { images, error, searchQuery } = this.state;
 
@@ -59,7 +58,7 @@ class ImageFinderApp extends Component {
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
         />
-        
+
         {error && <p>Something goes wrong: {error.message}</p>}
         {images.length > 0 && <Gallery items={images} />}
 
