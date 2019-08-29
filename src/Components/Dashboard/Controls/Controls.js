@@ -32,14 +32,14 @@ const Controls = ({ changeInputValue, deposit, withdraw, inputValue }) => (
 );
 
 Controls.defaultProps = {
-  inputValue: 0,
+  inputValue: '',
 };
 
 Controls.propTypes = {
   changeInputValue: PropTypes.func.isRequired,
   deposit: PropTypes.func.isRequired,
   withdraw: PropTypes.func.isRequired,
-  inputValue: PropTypes.number,
+  inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default Controls;

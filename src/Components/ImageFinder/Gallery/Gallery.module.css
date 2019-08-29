@@ -9,7 +9,7 @@
 }
 
 .image {
-  padding: 10px
+  padding: 0;
 }
 
 .modalBTN {
@@ -36,4 +36,3 @@
 .modalBTN:focus {
   background-color: #1f65d6;
 }
-

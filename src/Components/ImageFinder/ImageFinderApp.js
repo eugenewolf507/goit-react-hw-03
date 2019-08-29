@@ -17,12 +17,12 @@ class ImageFinderApp extends Component {
     this.ref = React.createRef();
   }
 
-  componentDidUpdate() {
-    this.ref.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-  }
+  // componentDidUpdate() {
+  //   this.ref.current.scrollIntoView({
+  //     behavior: 'smooth',
+  //     block: 'start',
+  //   });
+  // }
 
   handleSubmit = e => {
     const { searchQuery, pageNumber } = this.state;

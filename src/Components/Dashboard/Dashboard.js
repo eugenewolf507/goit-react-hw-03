@@ -13,10 +13,10 @@ class Dashboard extends Component {
     transaction: {
       id: '',
       type: '',
-      amount: 0,
+      amount: '',
       date: '',
     },
-    transactionInput: 0,
+    // transactionInput: '',
     income: 0,
     expense: 0,
   };
